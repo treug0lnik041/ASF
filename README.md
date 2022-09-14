@@ -2,9 +2,16 @@
 Simple Skyfall Audio System
 
 ## Install
+ASF builing as shared library.
+
 ```
 make -j4
 sudo make install
+```
+
+## Linking
+```
+g++ -std=c++17 hello.cpp -o hello -lstdc++fs -lasf
 ```
 
 ## Example
