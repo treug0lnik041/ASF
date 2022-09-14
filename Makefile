@@ -1,24 +1,30 @@
 CC=g++
 CFLAGS=-std=c++17
 LIBS=-lasound -lstdc++fs
-SRCS=src/AudioContext.cpp src/WAVFile.cpp
-OBJS=bin/AudioContext.o bin/WAVFile.o
-TARGET=bin/libasf.so
+TARGET=libasf.so
 
-all: $(TARGET)
+SRC_DIR=src
+OBJ_DIR=obj
+BIN_DIR=bin
 
-install: $(TARGET)
+SOURCES:=$(wildcard $(SRC_DIR)/*.cpp)
+OBJECTS:=$(SOURCES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+
+all: $(BIN_DIR)/$(TARGET)
+
+install: $(BIN_DIR)/$(TARGET)
 	cp $< /usr/lib/libasf.so
 	cp -R include/skyfall /usr/include/skyfall
 
 uninstall: /usr/include/skyfall /usr/lib/libasf.so
 	rm -rf $^
 
-$(TARGET): $(OBJS)
+$(BIN_DIR)/$(TARGET): $(OBJECTS)
 	$(CC) $(CFLAGS) $^ -shared -o $@ $(LIBS)
 
-bin/AudioContext.o: src/AudioContext.cpp
-	$(CC) $(CFLAGS) -o $@ -c $< -o $@
+$(OBJECTS): $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CC) $(CFLAGS) -o $@ -c $<
 
-bin/WAVFile.o: src/WAVFile.cpp
-	$(CC) $(CFLAGS) -o $@ -c $< -o $@
+.PHONY: clean
+clean:
+	@rm -rf $(OBJECTS) $(BIN_DIR)/$(TARGET)
