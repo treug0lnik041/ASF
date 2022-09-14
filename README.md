@@ -1,5 +1,5 @@
 # ASF
-Simple Skyfall Audio System
+Simple Skyfall Audio System for Linux
 
 ## Install
 ASF builing as shared library.
