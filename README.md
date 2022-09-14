@@ -1,9 +1,11 @@
 # ASF
 Simple Skyfall Audio System for Linux
 
+# Dependencies
+ASF needs libasound.
+
 ## Install
 ASF builing as shared library.
-
 ```
 cd ASF
 mkdir bin obj
