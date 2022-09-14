@@ -4,6 +4,8 @@ Simple Skyfall Audio System
 ## Install
 ASF builing as shared library.
 
+Create bin and obj directories for .o and .so files.
+
 ```
 make -j4
 sudo make install
