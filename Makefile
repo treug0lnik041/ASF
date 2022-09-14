@@ -28,3 +28,4 @@ $(OBJECTS): $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 .PHONY: clean
 clean:
 	@rm -rf $(OBJECTS) $(BIN_DIR)/$(TARGET)
+	
